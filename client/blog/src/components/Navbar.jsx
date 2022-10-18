@@ -9,10 +9,21 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import { useMediaQuery,  useTheme,} from "@mui/material"
+import foto from "../images/foto.png"
+import Avatar from '@mui/material/Avatar';
+
+
+
+
 
 export default function NavBar() {
   const {currentUser} = React.useContext(AuthContext);
 
+  const theme = useTheme();
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+
+  
  
     
   const navigate = useNavigate()
@@ -36,11 +47,15 @@ export default function NavBar() {
 
   };
 
+
   return (
     <Box sx={{marginBottom:"0px"}} >
      
       <AppBar position="static" style={{cursor:"pointer"}} sx={{backgroundColor:"tomato"}}>
         <Toolbar>
+        <Avatar alt="Blog Admin" src={foto} sx={{ width: 45, height: 45,mr:2}}/>
+       
+       
             <Typography variant="h6" color="inherit" sx={{ flexGrow: 3,textAlign:"left"}} style={{marginLeft:"0px"}} onClick={()=>navigate("/")} >
              Blog App Project
             </Typography>
