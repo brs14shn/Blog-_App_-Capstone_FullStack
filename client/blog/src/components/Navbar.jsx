@@ -8,12 +8,12 @@ import AccountCircle from '@mui/icons-material/AccountCircle';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import { useNavigate } from "react-router-dom";
-// import { AuthContext } from "../contexts/AuthContext";
+import { AuthContext } from "../contexts/AuthContext";
 
 export default function NavBar() {
-//   const {currentUser,logOut} = React.useContext(AuthContext);
+  const {currentUser} = React.useContext(AuthContext);
 
-  const currentUser =false
+ 
     
   const navigate = useNavigate()
   // const [auth, setAuth] = React.useState(true);
