@@ -18,10 +18,10 @@ import Avatar from '@mui/material/Avatar';
 
 
 export default function NavBar() {
-  const {currentUser} = React.useContext(AuthContext);
+  const {currentUser,logOut} = React.useContext(AuthContext);
 
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
+  //const isMatch = useMediaQuery(theme.breakpoints.down("md"));
 
   
  
@@ -40,8 +40,8 @@ export default function NavBar() {
     }else if (e.target.innerText === 'Sign Up') {
       navigate('/register')
     }else if (e.target.innerText === 'Logout'){
-    //   logOut(navigate)
-    navigate("/login")
+      logOut(navigate)
+    
       
     }
 
