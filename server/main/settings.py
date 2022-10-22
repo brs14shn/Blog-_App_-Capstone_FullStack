@@ -47,6 +47,7 @@ INSTALLED_APPS = [
 
     #myapps
     "users",
+    "blog",
 ]
 
 MIDDLEWARE = [
