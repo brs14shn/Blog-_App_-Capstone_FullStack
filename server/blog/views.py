@@ -11,6 +11,7 @@ from .serializers import (
     CommentSerializers,
     LikeSerializers,
     PostViewSerializers,
+    BlogPostsSerializers,
 )
 from rest_framework import generics
 
@@ -39,5 +40,18 @@ class LikeView(generics.ListCreateAPIView):
 class PostView(generics.ListCreateAPIView):
     queryset= PostView.objects.all()
     serializer_class= PostViewSerializers
+
+class PostBlogView(generics.ListCreateAPIView):
+    queryset= Post.objects.all()
+    serializer_class= BlogPostsSerializers
+
+class PostBlogRUDView(generics.RetrieveUpdateDestroyAPIView):
+    queryset= Post.objects.all()
+    serializer_class= BlogPostsSerializers
+    lookup_field="id"
+
+
+
+
 
 

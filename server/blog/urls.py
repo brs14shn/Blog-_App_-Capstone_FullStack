@@ -6,6 +6,8 @@ from .views import (
     CommentView,
     LikeView,
     PostView,
+    PostBlogView,
+    PostBlogRUDView,
 )
 
 urlpatterns = [
@@ -13,5 +15,7 @@ urlpatterns = [
     path("comment/",CommentView.as_view()),
     path("like/",LikeView.as_view()),
     path("view/",PostView.as_view()),
+    path("blogs/",PostBlogView.as_view()),
+    path("blogs/<int:id>/",PostBlogRUDView.as_view()),
   
 ]

@@ -7,6 +7,7 @@ from .models import (
     Like,
     PostView
 )
+from django.utils.timezone import now
 
 
 
@@ -67,7 +68,58 @@ class PostViewSerializers(serializers.ModelSerializer):
             "post", 
         )
 
+class BlogPostsSerializers(serializers.ModelSerializer):
+    # ! Object-level validation  👇
+#   """
+#   SerializerMethodField() methodu kullandık, bu method, modelden gelen tabloya serializers işlemi uygularken ek olarak veri eklemek için kullanılıyor
+#   """
+    days=serializers.SerializerMethodField()
+    comment_count =serializers.SerializerMethodField()
+    like_count=serializers.SerializerMethodField()
+    view_count=serializers.SerializerMethodField()
+    category=serializers.StringRelatedField()
+    category_id= serializers.IntegerField()
+    author=serializers.StringRelatedField()
+    author_id=serializers.IntegerField()
 
+    class Meta:
+        model=Post
+
+        fields =(
+            "id",
+            "title",
+            "content",
+            "image",
+            "author",
+            "author_id",
+            "status",
+            "publish_date",
+            "last_updated",
+            "days",
+            "comment_count",
+            "like_count",
+            "view_count",
+            "category",
+            "category_id",
+
+        )
+    def get_days(self,obj):
+        return (now() - obj.publish_date).days 
+
+
+    def get_comment_count(self,obj):
+        return Comment.objects.filter(post=obj.id).count()
+    
+    def get_like_count(self,obj):
+        return Comment.objects.filter(post=obj.id).count()
+    
+    def get_view_count(self,obj):
+        return Comment.objects.filter(post=obj.id).count()
+
+     #! Field-level validation
+    # def validate_title(self,value):
+    #     if value.lower() =="angular" and  value.lower() =="vue" :
+    #         raise serializers.ValidationError("angular and vue can not be our blogapp")
 
 
 
