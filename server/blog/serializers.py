@@ -18,8 +18,54 @@ class CategorySerializers(serializers.ModelSerializer):
             "name"
         )
 
+class CommentSerializers(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    post =  serializers.StringRelatedField()
+    user_id= serializers.IntegerField()
+    post_id= serializers.IntegerField()
 
+    class Meta:
+        model=Comment
+        fields =(
+            "id",
+            "post_id",
+            "user_id",
+            "user",
+            "post",
+            "content"
+        )
+    read_only_fields =(
+        "time_stamp"
+    )
 
+class LikeSerializers(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    post =  serializers.StringRelatedField()
+    user_id= serializers.IntegerField()
+    post_id= serializers.IntegerField()
+    class Meta:
+        model =  Like
+        fields =(
+            "id",
+            "post_id",
+            "user_id",
+            "user",
+            "post", 
+        )
+class PostViewSerializers(serializers.ModelSerializer):
+    user = serializers.StringRelatedField()
+    post =  serializers.StringRelatedField()
+    user_id= serializers.IntegerField()
+    post_id= serializers.IntegerField()
+    class Meta:
+        model =  Like
+        fields =(
+            "id",
+            "post_id",
+            "user_id",
+            "user",
+            "post", 
+        )
 
 
 
