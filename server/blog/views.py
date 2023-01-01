@@ -37,6 +37,22 @@ class LikeView(generics.ListCreateAPIView):
     queryset= Like.objects.all()
     serializer_class= LikeSerializers
 
+    def create(self, request, *args, **kwargs):
+        user = request.data.get("user")
+        print(user)
+        post = request.data.get("post")
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        is_like = Like.objects.filter(user = user ,post = post)
+        if is_like:
+            is_like.delete()
+        else:
+            self.perform_create(serializer)
+        headers = self.get_success_headers(serializer.data)
+        return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
+
+        
+
 class PostView(generics.ListCreateAPIView):
     queryset= PostView.objects.all()
     serializer_class= PostViewSerializers

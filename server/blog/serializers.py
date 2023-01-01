@@ -111,10 +111,10 @@ class BlogPostsSerializers(serializers.ModelSerializer):
         return Comment.objects.filter(post=obj.id).count()
     
     def get_like_count(self,obj):
-        return Comment.objects.filter(post=obj.id).count()
+        return Like.objects.filter(post=obj.id).count()
     
     def get_view_count(self,obj):
-        return Comment.objects.filter(post=obj.id).count()
+        return PostView.objects.filter(post=obj.id).count()
 
      #! Field-level validation
     # def validate_title(self,value):
