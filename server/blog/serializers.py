@@ -105,6 +105,7 @@ class BlogPostsSerializers(serializers.ModelSerializer):
         )
     def get_days(self,obj):
         return (now() - obj.publish_date).days 
+    
 
 
     def get_comment_count(self,obj):
